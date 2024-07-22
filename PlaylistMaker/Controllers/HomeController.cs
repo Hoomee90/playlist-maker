@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PlaylistMaker.Models;
@@ -16,8 +17,8 @@ namespace PlaylistMaker.Controllers
 		[HttpGet("/")]
 		public ActionResult Index()
 		{
-			ViewBag.categories = _db.Playlists.ToList();
-			ViewBag.items = _db.Songs.ToList();
+			ViewBag.Playlists = _db.Playlists.ToList(); 
+			ViewBag.Songs = _db.Songs.ToList();
 			return View();
 		}
 		

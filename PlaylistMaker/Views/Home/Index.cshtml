@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PlaylistMaker.Models;
+
+<h1>Welcome to placeholder!</h1>
+
+<h4>Playlist</h4>
+@if (@ViewBag.Playlists.Count == 0)
+{
+  <p>No playlists have been added yet!</p>
+} 
+<ul>
+  @foreach (Playlist playlist in @ViewBag.Playlists)
+  {
+    <li>@Html.ActionLink(@playlist.Name, "Details", "Playlists", new { id = @playlist.PlaylistId })</li>
+  }
+</ul>
+
+<h4>Songs</h4>
+@if (@ViewBag.Playlists.Count == 0)
+{
+  <p>No songs have been added yet!</p>
+} 
+<ul>
+  @foreach (Song song in @ViewBag.Songs)
+  {
+    <li>@Html.ActionLink(@song.Title.ToString(), "Details", "Items", new { id = @song.SongId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Manage songs", "Index", "Songs")</p>
+<p>@Html.ActionLink("Manage playlists", "Index", "Playlists")</p>
+<p>@Html.ActionLink("Manage artists", "Index", "Artists")</p>
