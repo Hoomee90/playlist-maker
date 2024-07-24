@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PlaylistMaker.Models;
+@model PlaylistMaker.Models.Playlist;
+
+<h4>Playlist Details</h4>
+
+<h3>@Html.DisplayFor(model => model.Name)<h3>
+
+@if (@Model.Songs.Count == 0)
+{
+  <h3>No songs have been added to this playlist yet!</h3>
+} 
+else
+{
+  <h3>Songs:</h3>
+  <ul>
+    @foreach (Song song in Model.Songs)
+    {
+      string artists = "";
+      @if(song.JoinEntities.Count == 0)
+      {
+        artists = "Nobody";
+      }
+      else
+      {
+        List<string> tagList = new List<string>();
+        @foreach(SongArtist join in song.JoinEntities)
+        {
+          tagList.Add(join.Artist.Name);
+        }
+        artists = String.Join(", ", tagList);
+      }
+      <li>@Html.ActionLink($"{song.Title}", "Details", "Songs", new { id = song.SongId }) - @artists</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add new song", "Create", "Songs")</p>
+<p>@Html.ActionLink("Edit playlist", "Edit", new { id = Model.PlaylistId })</p>
+<p>@Html.ActionLink("Delete playlist", "Delete", new { id = Model.PlaylistId })</p>
+<p>@Html.ActionLink("Back to playlist list", "Index")</p>

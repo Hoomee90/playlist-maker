@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PlaylistMaker.Models;
+@model PlaylistMaker.Models.Song;
+
+<h4>Song Details</h4>
+
+<h3>@Html.DisplayFor(model => model.Title)</h3>
+<p>@Html.DisplayNameFor(model => model.Playlist): @Html.DisplayFor(model => model.Playlist.Name)</p>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This song isn't by anybody!</p>
+}
+else
+{
+  <h4>This song is by:</h4>
+  <ul>
+    @foreach(SongArtist join in Model.JoinEntities)
+    {
+      <li>@join.Artist.Name</li>
+      @using (Html.BeginForm("DeleteJoin", "Songs"))
+      {
+        @Html.Hidden("joinId", @join.SongArtistId)
+        <input type="submit" value="Remove">
+      }
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add an artist", "AddArtist", new { id = Model.SongId })</p>
+<p>@Html.ActionLink("Edit song", "Edit", new { id = Model.SongId })</p>
+<p>@Html.ActionLink("Delete song", "Delete", new { id = Model.SongId })</p>
+<p>@Html.ActionLink("Back to song list", "Index")</p>
