@@ -35,7 +35,7 @@ namespace PlaylistMaker.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				ViewBag.CategoryId = new SelectList(_db.Playlists, "PlaylistId", "Name");
+				ViewBag.PlaylistId = new SelectList(_db.Playlists, "PlaylistId", "Name");
 				return View(song);
 			}
 			else

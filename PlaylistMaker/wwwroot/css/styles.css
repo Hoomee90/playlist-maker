@@ -6,3 +6,9 @@ form * {
 a {
   text-decoration: none;
 }
+
+.field-validation-error
+{
+  color: #DC3545;
+  font-weight: bold;
+}
