@@ -38,9 +38,16 @@ namespace PlaylistMaker.Controllers
 		[HttpPost]
 		public ActionResult Create(Artist artist)
 		{
-			_db.Artists.Add(artist);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
+			if (!ModelState.IsValid)
+			{
+				return View(artist);
+			}
+			else
+			{
+				_db.Artists.Add(artist);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 		
 		public ActionResult AddSong(int id)
@@ -92,12 +99,12 @@ namespace PlaylistMaker.Controllers
 		}
 		
 		[HttpPost]
-    public ActionResult DeleteJoin(int joinId)
-    {
-      SongArtist joinEntry = _db.SongArtists.FirstOrDefault(entry => entry.SongArtistId == joinId);
-      _db.SongArtists.Remove(joinEntry);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+		public ActionResult DeleteJoin(int joinId)
+		{
+			SongArtist joinEntry = _db.SongArtists.FirstOrDefault(entry => entry.SongArtistId == joinId);
+			_db.SongArtists.Remove(joinEntry);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }

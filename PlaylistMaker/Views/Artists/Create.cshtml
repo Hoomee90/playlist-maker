@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Artist
+
+<h4>Create artist</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    <p>@Html.ValidationMessageFor(model => model.Name, "")</p>
+
+    @Html.LabelFor(model => model.Description);
+    @Html.TextAreaFor(model => model.Description, 3, 24, null);
+    <p>@Html.ValidationMessageFor(model => model.Description, "")</p>
+
+    <input type="submit" value="Add new artist" class="btn btn-primary">
+}
+<p>@Html.ActionLink("Back to artist list", "Index")</p>
