@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Playlist
+
+<h4>Create Playlist</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name);
+  @Html.TextBoxFor(model => model.Name);
+  <p>@Html.ValidationMessageFor(model => model.Name, "")</p>
+
+  <input type="submit" value="Create new playlist">
+}
+
+<p>@Html.ActionLink("Back to playlist list", "Index")</p>

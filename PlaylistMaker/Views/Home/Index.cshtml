@@ -4,9 +4,9 @@
 
 @using PlaylistMaker.Models;
 
-<h1>Welcome to placeholder!</h1>
+<h1>Welcome to Playlist Maker!</h1>
 
-<h4>Playlist</h4>
+<h4>Playlists</h4>
 @if (@ViewBag.Playlists.Count == 0)
 {
   <p>No playlists have been added yet!</p>
@@ -19,14 +19,14 @@
 </ul>
 
 <h4>Songs</h4>
-@if (@ViewBag.Playlists.Count == 0)
+@if (@ViewBag.Songs.Count == 0)
 {
   <p>No songs have been added yet!</p>
 } 
 <ul>
   @foreach (Song song in @ViewBag.Songs)
   {
-    <li>@Html.ActionLink(@song.Title.ToString(), "Details", "Items", new { id = @song.SongId })</li>
+    <li>@Html.ActionLink(@song.Title.ToString(), "Details", "Songs", new { id = @song.SongId })</li>
   }
 </ul>
 
