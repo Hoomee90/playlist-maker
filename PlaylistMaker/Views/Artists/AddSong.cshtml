@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Artist
+
+<h4>Add a song</h4>
+
+<h3>Add a song to this artist: @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ArtistId)
+
+    @Html.Label("Select item")
+    @Html.DropDownList("SongId")
+
+    <input type="submit" value="Save">
+}
+
+<p>@Html.ActionLink("Back to artist list", "Index")</p>
