@@ -66,9 +66,17 @@ namespace PlaylistMaker.Controllers
 		[HttpPost]
 		public ActionResult Edit(Song song)
 		{
-			_db.Songs.Update(song);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
+			if (!ModelState.IsValid)
+			{
+				ViewBag.PlaylistId = new SelectList(_db.Playlists, "PlaylistId", "Name");
+				return View(song);
+			}
+			else
+			{
+				_db.Songs.Update(song);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 		
 		public ActionResult AddArtist(int id)

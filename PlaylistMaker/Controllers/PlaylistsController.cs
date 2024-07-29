@@ -29,9 +29,16 @@ namespace PlaylistMaker.Controllers
 		[HttpPost]
 		public ActionResult Create(Playlist playlist)
 		{
-			_db.Playlists.Add(playlist);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
+			if (!ModelState.IsValid)
+			{
+				return View(playlist);
+			}
+			else
+			{
+				_db.Playlists.Add(playlist);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 		
 		public ActionResult Details(int id)
@@ -53,9 +60,16 @@ namespace PlaylistMaker.Controllers
 		[HttpPost]
 		public ActionResult Edit(Playlist playlist)
 		{
-			_db.Playlists.Update(playlist);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
+			if (!ModelState.IsValid)
+			{
+				return View(playlist);
+			}
+			else
+			{
+				_db.Playlists.Update(playlist);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 		
 		public ActionResult Delete(int id)

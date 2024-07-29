@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Song
+
+<h4>Edit Song</h4>
+
+<h3>@Html.DisplayFor(model => model.Title)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.SongId);
+
+  @Html.LabelFor(model => model.Title);
+  @Html.TextBoxFor(model => model.Title);
+  <p>@Html.ValidationMessageFor(model => model.Title, "")</p>
+
+  @Html.LabelFor(model => model.Genre);
+  @Html.TextBoxFor(model => model.Genre);
+  <p>@Html.ValidationMessageFor(model => model.Genre, "")</p>
+
+  @Html.LabelFor(model => model.Description);
+  @Html.TextAreaFor(model => model.Description, 3, 24, null);
+  <p>@Html.ValidationMessageFor(model => model.Description, "")</p>
+
+  @Html.LabelFor(model => model.Length);
+  @Html.TextBoxFor(model => model.Length, new { @type = "number" });
+  <p>@Html.ValidationMessageFor(model => model.Length, "")</p>
+
+  @Html.LabelFor(model => model.Playlist);
+  @Html.DropDownList("PlaylistId");
+  <p>@Html.ValidationMessageFor(model => model.PlaylistId, "")</p>
+
+  <input type="submit" value="Save">
+}
+
+<p>@Html.ActionLink("Back to song list", "Index")</p>

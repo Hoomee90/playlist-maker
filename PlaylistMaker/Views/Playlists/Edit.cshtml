@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Playlist
+
+<h4>Edit Playlist</h4>
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PlaylistId);
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+    <p>@Html.ValidationMessageFor(model => model.Name, "")</p>
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to playlist list", "Index")</p>

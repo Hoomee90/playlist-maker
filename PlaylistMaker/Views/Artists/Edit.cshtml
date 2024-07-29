@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PlaylistMaker.Models.Artist
+
+<h4>Edit artist</h4>
+
+<h3>@Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ArtistId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+  <p>@Html.ValidationMessageFor(model => model.Name, "")</p>
+
+  @Html.LabelFor(model => model.Description);
+  @Html.TextAreaFor(model => model.Description, 3, 24, null);
+  <p>@Html.ValidationMessageFor(model => model.Description, "")</p>
+
+  <input type="submit" value="Save">
+}
+
+<p>@Html.ActionLink("Back to artist list", "Index")</p>

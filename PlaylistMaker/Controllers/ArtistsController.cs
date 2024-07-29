@@ -78,9 +78,16 @@ namespace PlaylistMaker.Controllers
 		[HttpPost]
 		public ActionResult Edit(Artist artist)
 		{
-			_db.Artists.Update(artist);
-			_db.SaveChanges();
-			return RedirectToAction("Index");
+			if (!ModelState.IsValid)
+			{
+				return View(artist);
+			}
+			else
+			{
+				_db.Artists.Update(artist);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 		
 		public ActionResult Delete(int id)
