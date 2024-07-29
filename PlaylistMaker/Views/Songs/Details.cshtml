@@ -8,6 +8,9 @@
 <h4>Song Details</h4>
 
 <h3>@Html.DisplayFor(model => model.Title)</h3>
+<p>@Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayNameFor(model => model.Genre): @Html.DisplayFor(model => model.Genre)</p>
+<p>@Html.DisplayNameFor(model => model.Length): @Html.DisplayFor(model => model.Length) seconds</p>
 <p>@Html.DisplayNameFor(model => model.Playlist): @Html.DisplayFor(model => model.Playlist.Name)</p>
 
 @if(@Model.JoinEntities.Count == 0)
